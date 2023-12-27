@@ -1,14 +1,17 @@
 package com.example.BinarySearchTree;
 
 public class BinarySearchTree<T extends Comparable<T>> {
-    BinaryNode<T> root;
+    public BinaryNode<T> root;
+    private int numOfNodes; 
 
     public BinarySearchTree() {
         this.root = null;
+        this.numOfNodes = 0;
     }
 
     public BinarySearchTree(T root) {
         this.root = new BinaryNode<>(root);
+        this.numOfNodes = 1;
     }
 
     public void add(T node) {
@@ -18,6 +21,7 @@ public class BinarySearchTree<T extends Comparable<T>> {
             // BinaryNode<T> newNode = new BinaryNode<T>(node);
             addNode(root, node);
         }
+        this.numOfNodes++;
     }
 
     private BinaryNode<T> addNode(BinaryNode<T> root, T node) {
@@ -35,4 +39,23 @@ public class BinarySearchTree<T extends Comparable<T>> {
         return root;
     }
 
+    public void display() {
+        System.out.print("[");
+        display(root);
+        System.out.println("]");
+    }
+
+    private void display(BinaryNode<T> root) {
+        if (root == null) {
+            return;
+        }
+
+        display(root.left);
+        System.out.print(root.getKey() + " ");
+        display(root.right);
+    }
+
+    public int size(){
+        return numOfNodes;
+    }
 }

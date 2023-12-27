@@ -15,5 +15,8 @@ public class Main {
         tree.add(40);
         tree.add(10);
         tree.add(60);
+
+        System.out.println("Size of tree: " + tree.size());
+        tree.display();
     }
 }
