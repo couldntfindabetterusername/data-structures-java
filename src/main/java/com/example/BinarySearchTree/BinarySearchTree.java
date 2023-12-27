@@ -2,7 +2,7 @@ package com.example.BinarySearchTree;
 
 public class BinarySearchTree<T extends Comparable<T>> {
     public BinaryNode<T> root;
-    private int numOfNodes; 
+    private int numOfNodes;
 
     public BinarySearchTree() {
         this.root = null;
@@ -55,7 +55,46 @@ public class BinarySearchTree<T extends Comparable<T>> {
         display(root.right);
     }
 
-    public int size(){
+    public int size() {
         return numOfNodes;
+    }
+
+    public boolean search(T key) {
+        return search(root, key);
+    }
+
+    private boolean search(BinaryNode<T> root, T key) {
+        if (root == null) {
+            return false;
+        }
+
+        int compareResult = root.compareTo(key);
+        if (compareResult > 0) {
+            return search(root.left, key);
+        } else if (compareResult < 0) {
+            return search(root.right, key);
+        }
+
+        return true;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("----------- Binary search tree -----------");
+
+        BinarySearchTree<Integer> tree = new BinarySearchTree<Integer>(56);
+
+        tree.add(30);
+        tree.add(70);
+        tree.add(20);
+        tree.add(40);
+        tree.add(10);
+        tree.add(60);
+
+        System.out.println("Size of tree: " + tree.size());
+        tree.display();
+
+        System.out.println("Searching for 20: " + tree.search(20));
+        System.out.println("Searching for 30: " + tree.search(30));
+        System.out.println("Searching for 65: " + tree.search(65));
     }
 }
