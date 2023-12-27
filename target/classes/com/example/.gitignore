@@ -3,4 +3,8 @@ HashMap.class
 LinkedList.class
 Node.class
 
+INode.class
+BinaryNode.class
+BinarySearchTree.class
+
 .gitignore
