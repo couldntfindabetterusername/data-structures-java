@@ -30,11 +30,18 @@ public class HashMap {
 
     }
 
-    public int get(String data) {
-        data = data.toLowerCase();
+    public int get(String key) {
+        key = key.toLowerCase();
 
-        int index = generateHashCode(data);
-        return getFromList(buckets[index], data);
+        int index = generateHashCode(key);
+        return getFromList(buckets[index], key);
+    }
+
+    public void remove(String key) {
+        key = key.toLowerCase();
+
+        int index = generateHashCode(key);
+        buckets[index].remove(key);
     }
 
     private int generateHashCode(String data) {
@@ -63,5 +70,19 @@ public class HashMap {
             current = current.next;
         }
         return 0;
+    }
+
+    public static void main(String[] args) {
+        System.out.println("-------- Hashmap --------");
+        HashMap map = new HashMap(
+                "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations");
+
+        System.out.println("Frequency of they: " + map.get("they"));
+
+        map.add("They");
+        System.out.println("Frequency of they after adding another they: " + map.get("they"));
+
+        map.remove("they");
+        System.out.println("Frequency of they after removing they: " + map.get("they"));
     }
 }
